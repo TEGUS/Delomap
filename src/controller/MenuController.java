@@ -28,4 +28,9 @@ public class MenuController {
     void journalProgButtonOnAction(ActionEvent event) throws IOException {
         new ModelOpen().loadPage(event, "journal_programmation.fxml");
     }
+    
+    @FXML
+    void exitButtonOnAction(ActionEvent event) {
+        System.exit(0);
+    }
 }
