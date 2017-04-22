@@ -8,7 +8,10 @@ package pattern.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import javabeans.Marche;
 import java.util.List;
 import javabeans.Administration;
@@ -22,8 +25,59 @@ import javabeans.TypePrestation;
 public class MarcheDAO extends DAO<Marche> {
 
     @Override
-    public void create(Marche obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void create(Marche marche) throws SQLException {
+        //mettre à jour la table marche
+        Integer idMarche = null;
+        
+        PreparedStatement st = this.connect.prepareStatement("insert into marche(Nom, DateDebut, DateFin, Montant) VALUES (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+        st.setString(1, marche.getNom());
+        st.setTimestamp(2, new Timestamp(marche.getDateDebut().getTime()));
+        st.setTimestamp(3, new Timestamp(marche.getDateFin().getTime()));
+        st.setInt(4, marche.getMontant());
+        st.executeUpdate();
+        ResultSet rs = st.getGeneratedKeys();
+        if (rs.next()){
+            idMarche=rs.getInt(1);
+        }
+        rs.close();
+        st.close();
+        
+        String typePrestation = marche.getCodeTypePrestation();
+        //mettre à jour les tables procedures
+        st = this.connect.prepareStatement("SELECT * FROM procedurepartypeprestation where codeTypePrestation = ?");
+        st.setString(1, typePrestation);
+        ResultSet ret = st.executeQuery();
+        
+        while (ret.next()) {
+            String tpro = ret.getString("codeTypeProcedure");
+            
+            PreparedStatement stp = this.connect.prepareStatement("insert into procedures(procedurepartypeprestation_codeTypePrestation, procedurepartypeprestation_codeTypeProcedure, marche_idMarche) VALUES (?, ?, ?)");
+            stp.setString(1, typePrestation);
+            stp.setString(1, tpro);
+            stp.setInt(1, idMarche);
+            stp.executeUpdate();
+            stp.close();
+        }
+        st.close();
+        
+        //mettre à jour les tables document
+        st = this.connect.prepareStatement("SELECT * FROM type_v where typeprestation = ?");
+        st.setString(1, typePrestation);
+        ret = st.executeQuery();
+        
+        while (ret.next()) {
+            String tpro = ret.getString("typeprocedure");
+            String tdo = ret.getString("typedocument");
+            
+            PreparedStatement stp = this.connect.prepareStatement("insert into document(documentpartypeprocedure_codeTypeProcedure, documentpartypeprocedure_codeTypeDocument, idMarche) VALUES (?, ?, ?)");
+            stp.setString(1, tpro);
+            stp.setString(1, tdo);
+            stp.setInt(1, idMarche);
+            stp.executeUpdate();
+            stp.close();
+        }
+        st.close();
+        
     }
 
     @Override
@@ -63,7 +117,13 @@ public class MarcheDAO extends DAO<Marche> {
     }
 
     public List<Marche> findAll(String nom, String TypePrestation) throws SQLException {
-        PreparedStatement st = this.connect.prepareStatement("SELECT * FROM marche_view where (NomMarche LIKE '%"+nom+"%' or Montant LIKE '%"+nom+"%' or DateDebut LIKE '%"+nom+"%' or DateFin LIKE '%"+nom+"%') and codeTypePrestation = '"+TypePrestation+"'");
+        String filterTypePrestation = "";
+        if (!TypePrestation.equals("")) {
+            filterTypePrestation += " and codeTypePrestation = '"+TypePrestation+"'";
+        }
+        String sqlQuery = "SELECT * FROM marche_view where (NomMarche LIKE '%"+nom+"%' or Montant LIKE '%"+nom+"%' or DateDebut LIKE '%"+nom+"%' or DateFin LIKE '%"+nom+"%')"+filterTypePrestation;
+        //System.out.println(sqlQuery);
+        PreparedStatement st = this.connect.prepareStatement(sqlQuery);
         ResultSet ret = st.executeQuery();
         
         List<Marche> marches = new ArrayList();
