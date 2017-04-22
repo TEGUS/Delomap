@@ -174,7 +174,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Button fx:id="PrecedentButton" mnemonicParsing="false" text="&lt; Précédent" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="50.0" />
+                  <Button fx:id="PrecedentButton" mnemonicParsing="false" onAction="#precedentOnAction" text="&lt; Précédent" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="50.0" />
                   <Button fx:id="suivantButton" layoutX="614.0" layoutY="344.0" mnemonicParsing="false" text="Suivant &gt;" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="50.0" />
                   <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
                      <content>

@@ -17,16 +17,12 @@ import javabeans.Marche;
 import javabeans.TypePrestation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.event.ActionEvent;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import model.ModelOpen;
 import pattern.dao.DAO;
 import pattern.dao.MarcheDAO;
@@ -148,7 +144,7 @@ public class JournalProgrammation {
         if (event.getClickCount() == 2) {
             Marche m = marcheTable.getSelectionModel().getSelectedItem();
             Context.getInstance().setObject(m);
-            new ModelOpen().loadPage(event, "/gui/detail_marche.fxml");
+            new ModelOpen().loadPage(event, "detail_marche.fxml");
         }
     }
     

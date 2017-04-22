@@ -4,15 +4,18 @@
 
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javabeans.Marche;
 import javabeans.Procedure;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import model.ModelOpen;
 import pattern.dao.ProcedureDAO;
 import pattern.factory.DAOFactory;
 import tools.Context;
@@ -64,6 +67,11 @@ public class DetailMarche {
         dateFinLabel.setText(marche.getDateFin().toString());
         
         System.out.println(procedureDAO.findByMarche(marche.getId()).size());
-        //procedureListView.getItems().addAll(procedureDAO.findByMarche(marche.getId()));
+        procedureListView.getItems().addAll(procedureDAO.findByMarche(marche.getId()));
+    }
+    
+    @FXML
+    void precedentOnAction(ActionEvent event) throws IOException {
+        new ModelOpen().loadPage(event, "journal_programmation.fxml");
     }
 }

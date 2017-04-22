@@ -5,13 +5,11 @@
  */
 package model;
 
+import gui.MainApp;
 import java.io.IOException;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 /**
  *
@@ -20,15 +18,9 @@ import javafx.stage.Stage;
 public class ModelOpen {
  
     public void loadPage(Event event, String fxml) throws IOException {
-        ((Node)(event.getSource())).getScene().getWindow().hide();
-        // Création du loader.
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxml));
-        // Chargement du FXML.
-        AnchorPane ap = (AnchorPane) fxmlLoader.load();
-        // Création de la scène.
-        Stage stage = new Stage();
-        //stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setScene(new Scene(ap));
-        stage.show();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(MainApp.class.getResource(fxml));
+        AnchorPane marketOverview = (AnchorPane) loader.load();
+        MainApp.rootLayout.setCenter(marketOverview);
     }
 }
