@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="494.0" prefWidth="787.0" style="-fx-background-color: #99D9EA;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuController">
+    <stylesheets>
+        <URL value="@menu.css" />
+    </stylesheets>
+   <children>
+      <Button fx:id="journalProgButton" layoutX="31.0" layoutY="26.0" mnemonicParsing="false" onAction="#journalProgButtonOnAction" prefHeight="92.0" prefWidth="202.0" style="-fx-border-radius: 55px;" text="JOURNAL DE PROGRAMMATION" />
+      <Button layoutX="31.0" layoutY="146.0" mnemonicParsing="false" prefHeight="92.0" prefWidth="202.0" text="LISTE DES MARCHES" />
+      <Button layoutX="293.0" layoutY="26.0" mnemonicParsing="false" prefHeight="92.0" prefWidth="202.0" text="TYPE DE PRESTATION" />
+      <Button layoutX="293.0" layoutY="146.0" mnemonicParsing="false" prefHeight="92.0" prefWidth="202.0" text="LISTE DES DOCUMENTS" />
+      <Button layoutX="551.0" layoutY="146.0" mnemonicParsing="false" prefHeight="92.0" prefWidth="202.0" text="ADMINISTRATIONS" />
+      <Button layoutX="551.0" layoutY="26.0" mnemonicParsing="false" prefHeight="92.0" prefWidth="202.0" text="PROCEDURES" />
+      <Button layoutX="35.0" layoutY="331.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="194.0" text="NOUVEAU MARCHE" />
+      <Button layoutX="297.0" layoutY="331.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="194.0" text="NOUVELLE PROCEDURE" />
+      <Button layoutX="555.0" layoutY="331.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="194.0" text="AJOUTER ADMINISTRATION" />
+      <Button layoutX="469.0" layoutY="435.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="118.0" text="Retour MENU" />
+      <Button layoutX="623.0" layoutY="435.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="118.0" text="Quitter" />
+   </children>
+</AnchorPane>

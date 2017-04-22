@@ -51,7 +51,7 @@ public class MainApp extends Application {
         try {
             // charger le journal de programmation
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("journal_programmation.fxml"));
+            loader.setLocation(MainApp.class.getResource("Accueil.fxml"));
             AnchorPane marketOverview = (AnchorPane) loader.load();
             
             // ajouter la vue des marchés au centre du root layout
