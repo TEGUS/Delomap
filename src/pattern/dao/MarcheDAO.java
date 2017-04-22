@@ -36,7 +36,7 @@ public class MarcheDAO extends DAO<Marche> {
 
     @Override
     public List<Marche> findAll() throws SQLException {
-        PreparedStatement st = this.connect.prepareStatement("SELECT * FROM marche");
+        PreparedStatement st = this.connect.prepareStatement("SELECT * FROM marche_v");
         ResultSet ret = st.executeQuery();
         
         List<Marche> marches = new ArrayList();
@@ -48,6 +48,7 @@ public class MarcheDAO extends DAO<Marche> {
             m.setDateFin(ret.getDate("DateFin"));
             m.setAdministration(new Administration(ret.getString("CodeAdministration")));
             m.setMontant(ret.getInt("Montant"));
+            m.setCodeTypePrestation("codeTypePrestation");
             marches.add(m);
         }
         st.close();

@@ -1,7 +1,7 @@
 package controller;
 
+import model.ModelDataTable;
 import tools.Context;
-import gui.MainApp;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -15,7 +15,6 @@ import javafx.scene.control.TableView;
 
 import javabeans.Marche;
 import javabeans.TypePrestation;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -27,8 +26,8 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.ModelOpen;
 import pattern.dao.DAO;
 import pattern.dao.MarcheDAO;
 import pattern.factory.DAOFactory;
@@ -100,7 +99,7 @@ public class JournalProgrammation {
         params.add("Montant");
         params.add("DateDebut");
         params.add("DateFin");
-        params.add("prestation");
+        params.add("codeTypePrestation");
         
         listColumns = new ArrayList<>();
         listColumns.add(idColumn);
@@ -149,17 +148,7 @@ public class JournalProgrammation {
         if (event.getClickCount() == 2) {
             Marche m = marcheTable.getSelectionModel().getSelectedItem();
             Context.getInstance().setObject(m);
-            
-            ((Node)(event.getSource())).getScene().getWindow().hide();
-            // Création du loader.
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/detail_marche.fxml"));
-            // Chargement du FXML.
-            AnchorPane ap = (AnchorPane) fxmlLoader.load();
-            // Création de la scène.
-            Stage stage = new Stage();
-            //stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setScene(new Scene(ap));
-            stage.show();
+            new ModelOpen().loadPage(event, "/gui/detail_marche.fxml");
         }
     }
     

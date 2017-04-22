@@ -21,6 +21,8 @@ public class Marche {
     private Administration administration;
     private List<Procedure> procedures;
     private List<Document> documents;
+    
+    private String codeTypePrestation;
 
     public Marche() {
     }
@@ -87,6 +89,14 @@ public class Marche {
 
     public void setDocuments(List<Document> documents) {
         this.documents = documents;
+    }
+
+    public String getCodeTypePrestation() {
+        return codeTypePrestation;
+    }
+
+    public void setCodeTypePrestation(String codeTypePrestation) {
+        this.codeTypePrestation = codeTypePrestation;
     }
 
     @Override
