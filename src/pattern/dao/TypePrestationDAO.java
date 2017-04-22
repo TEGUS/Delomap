@@ -34,13 +34,13 @@ public class TypePrestationDAO extends DAO<TypePrestation>{
     }
 
     public List<TypePrestation> findAll() throws SQLException {
-        PreparedStatement st = this.connect.prepareStatement("SELECT codeTypePrestation FROM typeprestation");
+        PreparedStatement st = this.connect.prepareStatement("SELECT code FROM typeprestation");
         ResultSet ret = st.executeQuery();
         
         List<TypePrestation> tps = new ArrayList();
         while (ret.next()) {
             TypePrestation tp = new TypePrestation();
-            tp.setCode(ret.getString("codeTypePrestation"));
+            tp.setCode(ret.getString("code"));
             tps.add(tp);
         }
         st.close();

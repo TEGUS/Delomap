@@ -24,6 +24,11 @@
               <MenuItem mnemonicParsing="false" text="A propos" />
             </items>
           </Menu>
+            <Menu fx:id="menuMenu" mnemonicParsing="false" onAction="#menuMenuOnAction" text="Menu">
+               <items>
+                  <MenuItem fx:id="mainMenu" mnemonicParsing="false" onAction="#mainMenuOnAction" text="Retour Au Menu Principal" />
+               </items>
+            </Menu>
         </menus>
       </MenuBar>
    </top>

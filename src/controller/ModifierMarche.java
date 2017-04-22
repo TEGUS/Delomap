@@ -79,12 +79,15 @@ public class ModifierMarche {
             marche.setDateDebut(Date.from(dateDebutMarche.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
             marche.setDateFin(Date.from(dateFinMarche.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
             marche.setMontant(Integer.parseInt(montantMarche.getText()));
+            typePrestationMarche.getSelectionModel().select(0);
             marche.setCodeTypePrestation(typePrestationMarche.getSelectionModel().getSelectedItem());
             
             marcheDao.create(marche);
 
             okClicked = true;
             dialogStage.close();
+            
+            
         }
     }    
     
@@ -154,7 +157,7 @@ public class ModifierMarche {
         List<TypePrestation> tp = (ArrayList<TypePrestation>) typesprestation.findAll();
         
         ObservableList<String>  datas = FXCollections.observableArrayList();
-        datas.add("");
+        //datas.add("");
         for (int i = 0; i < tp.size(); i++) {
             //System.out.println(tp.get(i).getCode());
             datas.add(tp.get(i).getCode());

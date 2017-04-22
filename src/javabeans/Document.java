@@ -17,8 +17,8 @@ public class Document {
     private Date delaiTransmission;
     private String statut;
     private Blob archive;
-    private Procedure procedure;
-    private TypeDocument typeDocument;
+    private DocumentParTypeProcedure documentParTypeProcedure;
+    private Marche marche;
 
     public Document() {
     }
@@ -55,21 +55,20 @@ public class Document {
         this.archive = archive;
     }
 
-    public Procedure getProcedure() {
-        return procedure;
+    public DocumentParTypeProcedure getDocumentParTypeProcedure() {
+        return documentParTypeProcedure;
     }
 
-    public void setProcedure(Procedure procedure) {
-        this.procedure = procedure;
+    public void setDocumentParTypeProcedure(DocumentParTypeProcedure documentParTypeProcedure) {
+        this.documentParTypeProcedure = documentParTypeProcedure;
     }
 
-    public TypeDocument getTypeDocument() {
-        return typeDocument;
+    public Marche getMarche() {
+        return marche;
     }
 
-    public void setTypeDocument(TypeDocument typeDocument) {
-        this.typeDocument = typeDocument;
+    public void setMarche(Marche marche) {
+        this.marche = marche;
     }
-    
     
 }

@@ -84,7 +84,7 @@
                                     <Insets />
                                  </GridPane.margin>
                               </Label>
-                              <Label style="-fx-border-color: #333333; -fx-border-width: 2;" text="Marché 1" GridPane.columnIndex="1">
+                              <Label fx:id="nomLabel" style="-fx-border-color: #333333; -fx-border-width: 2;" text="Marché 1" GridPane.columnIndex="1">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -92,7 +92,7 @@
                                     <Insets left="10.0" />
                                  </GridPane.margin>
                               </Label>
-                              <Label style="-fx-border-width: 2; -fx-border-color: #333333;" text="1 000 000" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <Label fx:id="montantLabel" style="-fx-border-width: 2; -fx-border-color: #333333;" text="1 000 000" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -100,7 +100,7 @@
                                     <Insets left="10.0" />
                                  </GridPane.margin>
                               </Label>
-                              <Label style="-fx-border-width: 2; -fx-border-color: #333333;" text="02-12-2016" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                              <Label fx:id="dateDebutLabel" style="-fx-border-width: 2; -fx-border-color: #333333;" text="02-12-2016" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -108,7 +108,7 @@
                                     <Insets left="10.0" />
                                  </GridPane.margin>
                               </Label>
-                              <Label style="-fx-border-color: #333333; -fx-border-width: 2;" text="23-03-2017" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                              <Label fx:id="dateFinLabel" style="-fx-border-color: #333333; -fx-border-width: 2;" text="23-03-2017" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -133,7 +133,7 @@
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="117.0" prefWidth="390.0">
                                        <children>
-                                          <ListView prefHeight="67.0" prefWidth="319.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <ListView fx:id="procedureListView" prefHeight="94.0" prefWidth="313.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                 </content>
@@ -146,7 +146,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label style="-fx-border-width: 2; -fx-border-color: #333333;" text="AG" GridPane.columnIndex="1">
+                              <Label fx:id="typePrestationLabel" style="-fx-border-width: 2; -fx-border-color: #333333;" text="AG" GridPane.columnIndex="1">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -174,7 +174,8 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Button layoutX="614.0" layoutY="344.0" mnemonicParsing="false" text="Suivant &gt;" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="50.0" />
+                  <Button fx:id="PrecedentButton" mnemonicParsing="false" onAction="#precedentOnAction" text="&lt; Précédent" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="50.0" />
+                  <Button fx:id="suivantButton" layoutX="614.0" layoutY="344.0" mnemonicParsing="false" text="Suivant &gt;" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="50.0" />
                   <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
                      <content>
                         <TableView prefHeight="339.0" prefWidth="635.0">

@@ -16,7 +16,6 @@ public class TypeDocument {
     private String nom;
     private String phase;
     private List<DocumentParTypeProcedure> documentParTypeProcedures;
-    private List<Document> documents;
 
     public TypeDocument() {
     }
@@ -52,14 +51,4 @@ public class TypeDocument {
     public void setDocumentParTypeProcedures(List<DocumentParTypeProcedure> documentParTypeProcedures) {
         this.documentParTypeProcedures = documentParTypeProcedures;
     }
-
-    public List<Document> getDocuments() {
-        return documents;
-    }
-
-    public void setDocuments(List<Document> documents) {
-        this.documents = documents;
-    }
-    
-    
 }

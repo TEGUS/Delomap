@@ -1,5 +1,7 @@
 package controller;
 
+import model.ModelDataTable;
+import tools.Context;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -15,13 +17,13 @@ import javabeans.Marche;
 import javabeans.TypePrestation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import model.ModelOpen;
 import pattern.dao.DAO;
 import pattern.dao.MarcheDAO;
 import pattern.factory.DAOFactory;
@@ -93,7 +95,7 @@ public class JournalProgrammation {
         params.add("Montant");
         params.add("DateDebut");
         params.add("DateFin");
-        params.add("prestation");
+        params.add("codeTypePrestation");
         
         listColumns = new ArrayList<>();
         listColumns.add(idColumn);
@@ -141,9 +143,8 @@ public class JournalProgrammation {
     protected void marcheTableOnMouseClicked(MouseEvent event) throws IOException {
         if (event.getClickCount() == 2) {
             Marche m = marcheTable.getSelectionModel().getSelectedItem();
-            AnchorPane anc = FXMLLoader.load(getClass().getResource("/gui/detail_marche.fxml"));
-            anchorPane.getChildren().clear();
-            anchorPane.getChildren().add(anc);
+            Context.getInstance().setObject(m);
+            new ModelOpen().loadPage(event, "detail_marche.fxml");
         }
     }
     

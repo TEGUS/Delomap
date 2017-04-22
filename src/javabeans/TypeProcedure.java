@@ -14,9 +14,6 @@ import java.util.List;
 public class TypeProcedure {
     private String code;
     private String nom;
-    private List<DocumentParTypeProcedure> documentParTypeProcedures;
-    private List<ProcedureParTypePrestation> procedureParTypePrestations;
-    private List<Procedure> procedures;
 
     public TypeProcedure() {
     }
@@ -36,30 +33,4 @@ public class TypeProcedure {
     public void setNom(String nom) {
         this.nom = nom;
     }
-
-    public List<DocumentParTypeProcedure> getDocumentParTypeProcedures() {
-        return documentParTypeProcedures;
-    }
-
-    public void setDocumentParTypeProcedures(List<DocumentParTypeProcedure> documentParTypeProcedures) {
-        this.documentParTypeProcedures = documentParTypeProcedures;
-    }
-
-    public List<ProcedureParTypePrestation> getProcedureParTypePrestations() {
-        return procedureParTypePrestations;
-    }
-
-    public void setProcedureParTypePrestations(List<ProcedureParTypePrestation> procedureParTypePrestations) {
-        this.procedureParTypePrestations = procedureParTypePrestations;
-    }
-
-    public List<Procedure> getProcedures() {
-        return procedures;
-    }
-
-    public void setProcedures(List<Procedure> procedures) {
-        this.procedures = procedures;
-    }
-    
-    
 }
