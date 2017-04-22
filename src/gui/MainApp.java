@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 public class MainApp extends Application {
     
     private Stage primaryStage;
-    private BorderPane rootLayout;
+    public static BorderPane rootLayout;
     
     @Override
     public void start(Stage primaryStage) {
@@ -28,7 +28,6 @@ public class MainApp extends Application {
         this.primaryStage.setTitle("Liste des marchés");
         
         initRootLayout();
-        
         showMarketOverview();
     }
 

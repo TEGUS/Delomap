@@ -8,7 +8,6 @@ package pattern.factory;
 import javabeans.Administration;
 import javabeans.Document;
 import javabeans.Marche;
-import javabeans.Prestation;
 import javabeans.Procedure;
 import javabeans.TypeDocument;
 import javabeans.TypePrestation;
@@ -17,7 +16,6 @@ import pattern.dao.AdministrationDAO;
 import pattern.dao.DAO;
 import pattern.dao.DocumentDAO;
 import pattern.dao.MarcheDAO;
-import pattern.dao.PrestationDAO;
 import pattern.dao.ProcedureDAO;
 import pattern.dao.TypeDocumentDAO;
 import pattern.dao.TypePrestationDAO;
@@ -39,10 +37,6 @@ public class DAOFactory {
     
     public static DAO<Marche> getMarcheDAO() {
         return new MarcheDAO();
-    }
-    
-    public static DAO<Prestation> getPrestationDAO() {
-        return new PrestationDAO();
     }
     
     public static DAO<Procedure> getProcedureDAO() {

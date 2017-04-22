@@ -14,8 +14,6 @@ import java.util.List;
 public class TypePrestation {
     private String code;
     private String nom;
-    private List<ProcedureParTypePrestation> procedureParTypePrestations;
-    private List<Prestation> prestations;
 
     public TypePrestation() {
     }
@@ -40,22 +38,6 @@ public class TypePrestation {
 
     public void setNom(String nom) {
         this.nom = nom;
-    }
-
-    public List<ProcedureParTypePrestation> getProcedureParTypePrestations() {
-        return procedureParTypePrestations;
-    }
-
-    public void setProcedureParTypePrestations(List<ProcedureParTypePrestation> procedureParTypePrestations) {
-        this.procedureParTypePrestations = procedureParTypePrestations;
-    }
-
-    public List<Prestation> getPrestations() {
-        return prestations;
-    }
-
-    public void setPrestations(List<Prestation> prestations) {
-        this.prestations = prestations;
     }
 
     @Override

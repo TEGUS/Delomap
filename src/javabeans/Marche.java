@@ -6,6 +6,7 @@
 package javabeans;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -18,7 +19,8 @@ public class Marche {
     private Date dateFin;
     private int montant;
     private Administration administration;
-    private Prestation prestation;
+    private List<Procedure> procedures;
+    private List<Document> documents;
 
     public Marche() {
     }
@@ -71,18 +73,25 @@ public class Marche {
         this.administration = administration;
     }
 
-    public Prestation getPrestation() {
-        return prestation;
+    public List<Procedure> getProcedures() {
+        return procedures;
     }
 
-    public void setPrestation(Prestation prestation) {
-        this.prestation = prestation;
+    public void setProcedures(List<Procedure> procedures) {
+        this.procedures = procedures;
+    }
+
+    public List<Document> getDocuments() {
+        return documents;
+    }
+
+    public void setDocuments(List<Document> documents) {
+        this.documents = documents;
     }
 
     @Override
     public String toString() {
-        return "Marche{" + "id=" + id + ", nom=" + nom + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", montant=" + montant + ", administration=" + administration + ", prestation=" + prestation + '}';
+        return "Marche{" + "id=" + id + ", nom=" + nom + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", montant=" + montant + ", administration=" + administration + ", procedures=" + procedures + '}';
     }
-    
-    
 }
+

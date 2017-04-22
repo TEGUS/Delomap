@@ -5,9 +5,13 @@
  */
 package pattern.dao;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javabeans.Procedure;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import javabeans.ProcedureParTypePrestation;
 
 /**
  *
@@ -33,6 +37,21 @@ public class ProcedureDAO extends DAO<Procedure> {
     @Override
     public List<Procedure> findAll() throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public List<Procedure> findByMarche(int idMarche) throws SQLException {
+        PreparedStatement st = this.connect.prepareStatement("SELECT * FROM procedures");
+        ResultSet ret = st.executeQuery();
+        
+        List<Procedure> procedures = new ArrayList();
+        while (ret.next()) {
+            Procedure p = new Procedure();
+            p.setId(ret.getInt("id"));
+            p.setStatut(ret.getString("statut"));
+            procedures.add(p);
+        }
+        st.close();
+        return procedures;
     }
 
     @Override

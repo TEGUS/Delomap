@@ -1,5 +1,7 @@
 package controller;
 
+import tools.Context;
+import gui.MainApp;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -13,19 +15,20 @@ import javafx.scene.control.TableView;
 
 import javabeans.Marche;
 import javabeans.TypePrestation;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javabeans.Prestation;
 import javafx.event.ActionEvent;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import pattern.dao.DAO;
 import pattern.dao.MarcheDAO;
 import pattern.factory.DAOFactory;
@@ -145,9 +148,18 @@ public class JournalProgrammation {
     protected void marcheTableOnMouseClicked(MouseEvent event) throws IOException {
         if (event.getClickCount() == 2) {
             Marche m = marcheTable.getSelectionModel().getSelectedItem();
-            AnchorPane anc = FXMLLoader.load(getClass().getResource("/gui/detail_marche.fxml"));
-            anchorPane.getChildren().clear();
-            anchorPane.getChildren().add(anc);
+            Context.getInstance().setObject(m);
+            
+            ((Node)(event.getSource())).getScene().getWindow().hide();
+            // Création du loader.
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/detail_marche.fxml"));
+            // Chargement du FXML.
+            AnchorPane ap = (AnchorPane) fxmlLoader.load();
+            // Création de la scène.
+            Stage stage = new Stage();
+            //stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(ap));
+            stage.show();
         }
     }
     

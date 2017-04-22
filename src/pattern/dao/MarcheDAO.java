@@ -12,8 +12,6 @@ import java.util.ArrayList;
 import javabeans.Marche;
 import java.util.List;
 import javabeans.Administration;
-import javabeans.Prestation;
-import javabeans.TypePrestation;
 
 /**
  *
@@ -38,24 +36,18 @@ public class MarcheDAO extends DAO<Marche> {
 
     @Override
     public List<Marche> findAll() throws SQLException {
-        PreparedStatement st = this.connect.prepareStatement("SELECT * FROM marche_view");
+        PreparedStatement st = this.connect.prepareStatement("SELECT * FROM marche");
         ResultSet ret = st.executeQuery();
         
         List<Marche> marches = new ArrayList();
         while (ret.next()) {
             Marche m = new Marche();
-            m.setId(ret.getInt("idMarche"));
-            m.setNom(ret.getString("NomMarche"));
+            m.setId(ret.getInt("id"));
+            m.setNom(ret.getString("Nom"));
             m.setDateDebut(ret.getDate("DateDebut"));
             m.setDateFin(ret.getDate("DateFin"));
-            m.setAdministration(new Administration(ret.getString("CodeAdministrationConcernee")));
-            
-            Prestation p = new Prestation(ret.getInt("IdPrestation"));
-            p.setTypePrestation(new TypePrestation(ret.getString("codeTypePrestation")));
-            
-            m.setPrestation(p);
+            m.setAdministration(new Administration(ret.getString("CodeAdministration")));
             m.setMontant(ret.getInt("Montant"));
-            
             marches.add(m);
         }
         st.close();
@@ -74,11 +66,6 @@ public class MarcheDAO extends DAO<Marche> {
             m.setDateDebut(ret.getDate("DateDebut"));
             m.setDateFin(ret.getDate("DateFin"));
             m.setAdministration(new Administration(ret.getString("CodeAdministrationConcernee")));
-            
-            Prestation p = new Prestation(ret.getInt("IdPrestation"));
-            p.setTypePrestation(new TypePrestation(ret.getString("codeTypePrestation")));
-            
-            m.setPrestation(p);
             m.setMontant(ret.getInt("Montant"));
             
             marches.add(m);

@@ -5,7 +5,6 @@
  */
 package javabeans;
 
-import java.util.List;
 
 /**
  *
@@ -14,9 +13,8 @@ import java.util.List;
 public class Procedure {
     private int id;
     private String statut;
-    private List<Document> documents;
-    private Prestation prestation;
-    private TypeProcedure typeProcedure;
+    private ProcedureParTypePrestation procedureParTypePrestation;
+    private Marche marche;
 
     public Procedure() {
     }
@@ -37,29 +35,20 @@ public class Procedure {
         this.statut = statut;
     }
 
-    public List<Document> getDocuments() {
-        return documents;
+    public ProcedureParTypePrestation getProcedureParTypePrestation() {
+        return procedureParTypePrestation;
     }
 
-    public void setDocuments(List<Document> documents) {
-        this.documents = documents;
+    public void setProcedureParTypePrestation(ProcedureParTypePrestation procedureParTypePrestation) {
+        this.procedureParTypePrestation = procedureParTypePrestation;
     }
 
-    public Prestation getPrestation() {
-        return prestation;
+    public Marche getMarche() {
+        return marche;
     }
 
-    public void setPrestation(Prestation prestation) {
-        this.prestation = prestation;
+    public void setMarche(Marche marche) {
+        this.marche = marche;
     }
-
-    public TypeProcedure getTypeProcedure() {
-        return typeProcedure;
-    }
-
-    public void setTypeProcedure(TypeProcedure typeProcedure) {
-        this.typeProcedure = typeProcedure;
-    }
-    
     
 }
