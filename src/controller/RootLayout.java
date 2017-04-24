@@ -6,15 +6,20 @@ import gui.MainApp;
 import javabeans.Marche;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
 import model.ModelOpen;
 
 public class RootLayout {
 
+
+    @FXML
+    private MenuBar menuBar;
 
     @FXML
     private ResourceBundle resources;
@@ -47,16 +52,17 @@ public class RootLayout {
     }
 
     @FXML
-    protected void nouveauMarcheOnAction(ActionEvent event) {
+    protected void nouveauMarcheOnAction(ActionEvent event) throws IOException, SQLException {
         Marche tempMarche = null; //new Marche();
         boolean okClicked = mainApp.showMarcheEditDialog(tempMarche);
         if (okClicked) {
-            //MainApp.getPersonData().add(tempPerson);
+            new ModelOpen().loadPage(event, "journal_programmation.fxml", true, "Journal de programmation");
         }
     }
 
     @FXML
     void initialize() {
+        
     }
     
     @FXML
@@ -66,6 +72,14 @@ public class RootLayout {
     
     @FXML
     void mainMenuOnAction(ActionEvent event) throws IOException {
-        new ModelOpen().loadPage(event, "Menu.fxml");
+        new ModelOpen().loadPage(event, "Menu.fxml", false, "Menu principal");
+    }
+    
+    public void setInvisibleMenuBar() {
+        menuBar.setVisible(false);
+    }
+    
+    public void setVisibleMenuBar() {
+        menuBar.setVisible(true);
     }
 }

@@ -72,6 +72,6 @@ public class DetailMarche {
     
     @FXML
     void precedentOnAction(ActionEvent event) throws IOException {
-        new ModelOpen().loadPage(event, "journal_programmation.fxml");
+        new ModelOpen().loadPage(event, "journal_programmation.fxml", true, "Journal de programmation");
     }
 }

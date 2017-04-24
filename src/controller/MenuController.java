@@ -26,7 +26,7 @@ public class MenuController {
     
     @FXML
     void journalProgButtonOnAction(ActionEvent event) throws IOException {
-        new ModelOpen().loadPage(event, "journal_programmation.fxml");
+        new ModelOpen().loadPage(event, "journal_programmation.fxml", true, "Journal de programmation");
     }
     
     @FXML

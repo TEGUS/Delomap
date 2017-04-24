@@ -30,7 +30,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("Liste des marchés");
+        this.primaryStage.setTitle("Acceuil");
 
         initRootLayout();
 
@@ -47,6 +47,7 @@ public class MainApp extends Application {
             // Give the controller access to the main app.
             RootLayout controller = loader.getController();
             controller.setMainApp(this);
+            controller.setInvisibleMenuBar();
 
             // on affiche la scène contenant ce root layout
             Scene scene = new Scene(rootLayout);
@@ -93,6 +94,7 @@ public class MainApp extends Application {
             // Set marché into the controller.
             ModifierMarche controller = loader.getController();
             controller.setDialogStage(dialogStage);
+            //controller.setParentStage(this.primaryStage);
             controller.setMarche(marche);
 
             // Show the dialog and wait until the user closes it

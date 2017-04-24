@@ -81,31 +81,7 @@ public class JournalProgrammation {
 
     @FXML
     void initialize() throws SQLException {
-        marches = (MarcheDAO) DAOFactory.getMarcheDAO();
-        //System.out.println(marches.findAll().size());
-//        for (Marche m : marches.findAll()) {
-//            System.out.println(m);
-//        }
-        modelTable = new ModelDataTable<>();
-        modelTable.setJavabeans(marches.findAll());
-        
-        params = new ArrayList<>();
-        params.add("id");
-        params.add("Nom");
-        params.add("Montant");
-        params.add("DateDebut");
-        params.add("DateFin");
-        params.add("codeTypePrestation");
-        
-        listColumns = new ArrayList<>();
-        listColumns.add(idColumn);
-        listColumns.add(nomColumn);
-        listColumns.add(montantColumn);
-        listColumns.add(dateDebutColumn);
-        listColumns.add(dateFinColumn);
-        listColumns.add(typePrestationColumn);
-        
-        modelTable.loadTableJavabean(marcheTable, listColumns, params);
+        this.updateTable();
         
         DAO<TypePrestation> typesprestation = DAOFactory.getTypePrestationDAO();
         List<TypePrestation> tp = (ArrayList<TypePrestation>) typesprestation.findAll();
@@ -117,7 +93,7 @@ public class JournalProgrammation {
             datas.add(tp.get(i).getCode());
         }
         searchTypePrestation.setItems(datas);
-        //searchTypePrestation.getSelectionModel().select(0);
+        searchTypePrestation.getSelectionModel().select(0);
     }
     
     @FXML 
@@ -144,7 +120,7 @@ public class JournalProgrammation {
         if (event.getClickCount() == 2) {
             Marche m = marcheTable.getSelectionModel().getSelectedItem();
             Context.getInstance().setObject(m);
-            new ModelOpen().loadPage(event, "detail_marche.fxml");
+            new ModelOpen().loadPage(event, "detail_marche.fxml", false, "Détail marché");
         }
     }
     
@@ -152,5 +128,30 @@ public class JournalProgrammation {
     protected void handleRechercherButton(ActionEvent event) {
         String searchText = (String) searchInput.getText();
         System.out.println("rechercher : "+searchText);
+    }
+
+    public void updateTable() throws SQLException {
+        marches = (MarcheDAO) DAOFactory.getMarcheDAO();
+        
+        modelTable = new ModelDataTable<>();
+        modelTable.setJavabeans(marches.findAll());
+        
+        params = new ArrayList<>();
+        params.add("id");
+        params.add("Nom");
+        params.add("Montant");
+        params.add("DateDebut");
+        params.add("DateFin");
+        params.add("codeTypePrestation");
+        
+        listColumns = new ArrayList<>();
+        listColumns.add(idColumn);
+        listColumns.add(nomColumn);
+        listColumns.add(montantColumn);
+        listColumns.add(dateDebutColumn);
+        listColumns.add(dateFinColumn);
+        listColumns.add(typePrestationColumn);
+        
+        modelTable.loadTableJavabean(marcheTable, listColumns, params);
     }
 }

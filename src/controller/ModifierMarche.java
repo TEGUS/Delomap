@@ -58,6 +58,7 @@ public class ModifierMarche {
     private Button annulerMarche;
     
     private Stage dialogStage;
+    private Stage parentStage;
     private Marche marche;
     private boolean okClicked = false;
     private MarcheDAO marcheDao;
@@ -132,6 +133,10 @@ public class ModifierMarche {
      */
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
+    }
+
+    public void setParentStage(Stage primaryStage) {
+        this.parentStage = primaryStage;
     }
 
     /**

@@ -60,7 +60,7 @@ public class MarcheDAO extends DAO<Marche> {
             st.close();
 
             //mettre à jour les tables document
-            st = this.connect.prepareStatement("SELECT * FROM type_v where typeprestation = ? and typedocument != null");
+            st = this.connect.prepareStatement("SELECT * FROM type_v where typeprestation = ? and typedocument is not null and typedocument != ''");
             st.setString(1, typePrestation);
             ret = st.executeQuery();
 
@@ -98,6 +98,7 @@ public class MarcheDAO extends DAO<Marche> {
 
         List<Marche> marches = new ArrayList();
         while (ret.next()) {
+//            System.out.println("montant : "+ret.getString("Montant")+" type prestation : "+ret.getString("procedurepartypeprestation_codeTypePrestation"));
             Marche m = new Marche();
             m.setId(ret.getInt("id"));
             m.setNom(ret.getString("Nom"));
@@ -105,7 +106,7 @@ public class MarcheDAO extends DAO<Marche> {
             m.setDateFin(ret.getDate("DateFin"));
             m.setAdministration(new Administration(ret.getString("CodeAdministration")));
             m.setMontant(ret.getInt("Montant"));
-            m.setCodeTypePrestation("codeTypePrestation");
+            m.setCodeTypePrestation(ret.getString("procedurepartypeprestation_codeTypePrestation"));
             marches.add(m);
         }
         st.close();
@@ -115,9 +116,9 @@ public class MarcheDAO extends DAO<Marche> {
     public List<Marche> findAll(String nom, String TypePrestation) throws SQLException {
         String filterTypePrestation = "";
         if (!TypePrestation.equals("")) {
-            filterTypePrestation += " and codeTypePrestation = '" + TypePrestation + "'";
+            filterTypePrestation += " and procedurepartypeprestation_codeTypePrestation = '" + TypePrestation + "'";
         }
-        String sqlQuery = "SELECT * FROM marche_view where (NomMarche LIKE '%" + nom + "%' or Montant LIKE '%" + nom + "%' or DateDebut LIKE '%" + nom + "%' or DateFin LIKE '%" + nom + "%')" + filterTypePrestation;
+        String sqlQuery = "SELECT * FROM marche_v where (Nom LIKE '%" + nom + "%' or Montant LIKE '%" + nom + "%' or DateDebut LIKE '%" + nom + "%' or DateFin LIKE '%" + nom + "%')" + filterTypePrestation;
         //System.out.println(sqlQuery);
         PreparedStatement st = this.connect.prepareStatement(sqlQuery);
         ResultSet ret = st.executeQuery();
@@ -125,12 +126,13 @@ public class MarcheDAO extends DAO<Marche> {
         List<Marche> marches = new ArrayList();
         while (ret.next()) {
             Marche m = new Marche();
-            m.setId(ret.getInt("idMarche"));
-            m.setNom(ret.getString("NomMarche"));
+            m.setId(ret.getInt("id"));
+            m.setNom(ret.getString("Nom"));
             m.setDateDebut(ret.getDate("DateDebut"));
             m.setDateFin(ret.getDate("DateFin"));
-            m.setAdministration(new Administration(ret.getString("CodeAdministrationConcernee")));
+            m.setAdministration(new Administration(ret.getString("CodeAdministration")));
             m.setMontant(ret.getInt("Montant"));
+            m.setCodeTypePrestation(ret.getString("procedurepartypeprestation_codeTypePrestation"));
 
             marches.add(m);
         }
