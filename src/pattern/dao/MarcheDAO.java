@@ -39,16 +39,17 @@ public class MarcheDAO extends DAO<Marche> {
             }
             rs.close();
             st.close();
-            
+
             String typePrestation = marche.getCodeTypePrestation();
             //mettre à jour les tables procedures
             st = this.connect.prepareStatement("SELECT * FROM procedurepartypeprestation where codeTypePrestation = ?");
             st.setString(1, typePrestation);
             ResultSet ret = st.executeQuery();
-//System.out.println("typeP" + typePrestation);
+System.out.println("typeP" + typePrestation);
             while (ret.next()) {
 //System.out.println("test");
                 String tpro = ret.getString("codeTypeProcedure");
+System.out.println("typePro" + tpro);
 
                 PreparedStatement stp = this.connect.prepareStatement("insert into procedures(procedurepartypeprestation_codeTypePrestation, procedurepartypeprestation_codeTypeProcedure, marche_idMarche) VALUES (?, ?, ?)");
                 stp.setString(1, typePrestation);
@@ -82,13 +83,102 @@ public class MarcheDAO extends DAO<Marche> {
     }
 
     @Override
-    public void update(Marche obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void update(Marche marche) {
+        //mettre à jour la table marche
+        Integer idMarche = marche.getId();
+        try {
+            PreparedStatement st = this.connect.prepareStatement("update marche set Nom=?, DateDebut=?, DateFin=?, Montant=? where id=?");
+            st.setString(1, marche.getNom());
+            st.setTimestamp(2, new Timestamp(marche.getDateDebut().getTime()));
+            st.setTimestamp(3, new Timestamp(marche.getDateFin().getTime()));
+            st.setInt(4, marche.getMontant());
+            st.setInt(5, idMarche);
+            st.executeUpdate();
+            st.close();
+//System.out.println("id"+idMarche);
+            String typePrestation = marche.getCodeTypePrestation();//le type de prestation qu'il vient de renseigner
+            String codeTP = "";//le type de prestation enregistré en bd
+
+            //récupérer le type de prestation du marche
+            st = this.connect.prepareStatement("SELECT procedurepartypeprestation_codeTypePrestation FROM marche_v where id = ?");
+            st.setInt(1, idMarche);
+            ResultSet ret = st.executeQuery();
+            while (ret.next()) {
+                codeTP = ret.getString("procedurepartypeprestation_codeTypePrestation");
+            }
+            st.close();
+//System.out.println("nouv:"+typePrestation+"anc"+codeTP);
+            if (!typePrestation.equals(codeTP)) {
+
+                PreparedStatement del_proc = this.connect.prepareStatement("delete from procedures where marche_idMarche = ?");
+                del_proc.setInt(1, idMarche);
+                del_proc.executeUpdate();
+                del_proc.close();
+
+                PreparedStatement del_doc = this.connect.prepareStatement("delete from document where idMarche = ?");
+                del_doc.setInt(1, idMarche);
+                del_doc.executeUpdate();
+                del_doc.close();
+
+                //mettre à jour les tables procedures
+                st = this.connect.prepareStatement("SELECT * FROM procedurepartypeprestation where codeTypePrestation = ?");
+                st.setString(1, typePrestation);
+                ret = st.executeQuery();
+                //System.out.println("typeP" + typePrestation);
+                while (ret.next()) {
+                    //System.out.println("test");
+                    String tpro = ret.getString("codeTypeProcedure");
+
+                    PreparedStatement stp = this.connect.prepareStatement("insert into procedures(procedurepartypeprestation_codeTypePrestation, procedurepartypeprestation_codeTypeProcedure, marche_idMarche) VALUES (?, ?, ?)");
+                    stp.setString(1, typePrestation);
+                    stp.setString(2, tpro);
+                    stp.setInt(3, idMarche);
+                    stp.executeUpdate();
+                    stp.close();
+                }
+                st.close();
+
+                //mettre à jour les tables document
+                st = this.connect.prepareStatement("SELECT * FROM type_v where typeprestation = ? and typedocument is not null and typedocument != ''");
+                st.setString(1, typePrestation);
+                ret = st.executeQuery();
+
+                while (ret.next()) {
+                    String tpro = ret.getString("typeprocedure");
+                    String tdo = ret.getString("typedocument");
+
+                    PreparedStatement stp = this.connect.prepareStatement("insert into document(documentpartypeprocedure_codeTypeProcedure, documentpartypeprocedure_codeTypeDocument, idMarche) VALUES (?, ?, ?)");
+                    stp.setString(1, tpro);
+                    stp.setString(2, tdo);
+                    stp.setInt(3, idMarche);
+                    stp.executeUpdate();
+                    stp.close();
+                }
+                st.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void delete(Marche obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void delete(Marche marche) throws SQLException {
+        Integer idMarche = marche.getId();
+
+        PreparedStatement del_proc = this.connect.prepareStatement("delete from procedures where marche_idMarche = ?");
+        del_proc.setInt(1, idMarche);
+        del_proc.executeUpdate();
+        del_proc.close();
+
+        PreparedStatement del_doc = this.connect.prepareStatement("delete from document where idMarche = ?");
+        del_doc.setInt(1, idMarche);
+        del_doc.executeUpdate();
+        del_doc.close();
+
+        PreparedStatement del = this.connect.prepareStatement("delete from marche where id = ?");
+        del.setInt(1, idMarche);
+        del.executeUpdate();
+        del.close();
     }
 
     @Override

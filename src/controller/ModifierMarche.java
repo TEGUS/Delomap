@@ -6,6 +6,8 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -53,6 +55,9 @@ public class ModifierMarche {
 
     @FXML
     private Button enregistrerMarche;
+    
+    @FXML
+    private Button validerMarcheBtn;
 
     @FXML
     private Button annulerMarche;
@@ -80,15 +85,40 @@ public class ModifierMarche {
             marche.setDateDebut(Date.from(dateDebutMarche.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
             marche.setDateFin(Date.from(dateFinMarche.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
             marche.setMontant(Integer.parseInt(montantMarche.getText()));
-            typePrestationMarche.getSelectionModel().select(0);
+            //typePrestationMarche.getSelectionModel().select(0);
+            if (typePrestationMarche.getSelectionModel().getSelectedItem() == null) {
+                typePrestationMarche.getSelectionModel().select(0);
+            }
             marche.setCodeTypePrestation(typePrestationMarche.getSelectionModel().getSelectedItem());
-            
+            //System.out.println("Select"+typePrestationMarche.getSelectionModel().getSelectedItem());
             marcheDao.create(marche);
 
             okClicked = true;
             dialogStage.close();
             
             
+        }
+    }    
+
+    @FXML
+    public void validerMarcheOnAction(ActionEvent event) throws SQLException {
+
+        if (isInputValid()) {
+            //person.setFirstName(firstNameField.getText());
+            marcheDao = (MarcheDAO) DAOFactory.getMarcheDAO();
+            Marche marche = new Marche();
+            marche.setId(this.marche.getId());
+            marche.setNom(nomMarche.getText());
+            marche.setDateDebut(Date.from(dateDebutMarche.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            marche.setDateFin(Date.from(dateFinMarche.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            marche.setMontant(Integer.parseInt(montantMarche.getText()));
+            //typePrestationMarche.getSelectionModel().select(0);
+            marche.setCodeTypePrestation(typePrestationMarche.getSelectionModel().getSelectedItem());
+                    
+            marcheDao.update(marche);
+
+            okClicked = true;
+            dialogStage.close();
         }
     }    
     
@@ -172,8 +202,18 @@ public class ModifierMarche {
         
         if (marche != null) {
             nomMarche.setText(marche.getNom());
-            //dateDebutMarche.setValue((String) df.format(marche.getDateDebut()));
-            //dateDebutMarche.setPromptText("dd.mm.yyyy");
+            dateDebutMarche.setValue(Instant.ofEpochMilli(marche.getDateDebut().getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
+            dateFinMarche.setValue(Instant.ofEpochMilli(marche.getDateFin().getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
+            montantMarche.setText(marche.getMontant()+"");
+            typePrestationMarche.getSelectionModel().select(marche.getCodeTypePrestation());
+        }
+    }
+
+    public void setInvisible(String invisible) {
+        if (invisible.equals("nouveau")) {
+            this.enregistrerMarche.setVisible(false);
+        } else {//modifier
+            this.validerMarcheBtn.setVisible(false);
         }
     }
 }

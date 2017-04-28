@@ -59,6 +59,7 @@
          </children>
       </GridPane>
       <Button fx:id="enregistrerMarche" layoutX="411.0" layoutY="350.0" mnemonicParsing="false" onAction="#enregistrerMarcheOnAction" text="Enregistrer" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="115.0" />
+      <Button fx:id="validerMarcheBtn" layoutX="432.0" layoutY="350.0" mnemonicParsing="false" onAction="#validerMarcheOnAction" text="Valider" />
       <Button fx:id="annulerMarche" layoutX="502.0" layoutY="350.0" mnemonicParsing="false" onAction="#annulerMarcheOnAction" text="Annuler" />
    </children>
 </AnchorPane>

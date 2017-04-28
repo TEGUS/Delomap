@@ -23,7 +23,7 @@ import javafx.stage.Stage;
  */
 public class MainApp extends Application {
 
-    private Stage primaryStage;
+    private static Stage primaryStage;
     public static BorderPane rootLayout;
     
     
@@ -72,7 +72,7 @@ public class MainApp extends Application {
         }
     }
 
-    public boolean showMarcheEditDialog(Marche marche) {
+    public static boolean showMarcheEditDialog(Marche marche, String titre, String invisible) {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
@@ -81,11 +81,7 @@ public class MainApp extends Application {
 
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
-            if (marche == null) {
-                dialogStage.setTitle("Nouveau marché");
-            } else {
-                dialogStage.setTitle("Editer le marché");
-            }
+            dialogStage.setTitle(titre);
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(page);
@@ -96,6 +92,7 @@ public class MainApp extends Application {
             controller.setDialogStage(dialogStage);
             //controller.setParentStage(this.primaryStage);
             controller.setMarche(marche);
+            controller.setInvisible(invisible);
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();

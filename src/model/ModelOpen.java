@@ -21,9 +21,9 @@ import javafx.stage.Stage;
  */
 public class ModelOpen {
 
-    public void loadPage(Event event, String fxml, boolean visible, String title) throws IOException {
+    public void loadPage(Event event, String fxml, boolean visibleMenu, String title) throws IOException {
         MenuBar m = (MenuBar) MainApp.rootLayout.getScene().lookup("#menuBar");
-        if (visible) {
+        if (visibleMenu) {
             m.setVisible(true);
         } else {
             m.setVisible(false);

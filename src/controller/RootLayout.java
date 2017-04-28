@@ -9,13 +9,22 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.ModelOpen;
 
-public class RootLayout {
+public class RootLayout implements EventHandler {
 
 
     @FXML
@@ -39,6 +48,8 @@ public class RootLayout {
     @FXML
     private MenuItem NouveauMarcheMenuItem;
 
+    Stage dialogStage;
+    
     /**
      * Is called by the main application to give a reference back to itself.
      * 
@@ -54,9 +65,22 @@ public class RootLayout {
     @FXML
     protected void nouveauMarcheOnAction(ActionEvent event) throws IOException, SQLException {
         Marche tempMarche = null; //new Marche();
-        boolean okClicked = mainApp.showMarcheEditDialog(tempMarche);
+        boolean okClicked = mainApp.showMarcheEditDialog(tempMarche, "Enregistrer un nouveau marché", "editer");
         if (okClicked) {
             new ModelOpen().loadPage(event, "journal_programmation.fxml", true, "Journal de programmation");
+            
+            dialogStage = new Stage();
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+
+            Button ok = new Button("Ok");
+            VBox vbox = new VBox(new Text("Nouveau marché créé avec succès"), ok);
+            vbox.setAlignment(Pos.CENTER);
+            vbox.setPadding(new Insets(15));
+
+            dialogStage.setScene(new Scene(vbox));
+            dialogStage.show();
+            
+            ok.setOnAction(this);
         }
     }
 
@@ -81,5 +105,10 @@ public class RootLayout {
     
     public void setVisibleMenuBar() {
         menuBar.setVisible(true);
+    }
+
+    @Override
+    public void handle(Event event) {
+        dialogStage.close();
     }
 }
