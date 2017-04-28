@@ -18,6 +18,15 @@ public class MenuController {
 
     @FXML
     private Button journalProgButton;
+    
+     @FXML
+    private Button administrationButton;
+
+    @FXML
+    private Button proceduresButton;
+    
+    @FXML
+    private Button typePrestationButton;
 
 
     @FXML
@@ -26,7 +35,22 @@ public class MenuController {
     
     @FXML
     void journalProgButtonOnAction(ActionEvent event) throws IOException {
-        new ModelOpen().loadPage(event, "journal_programmation.fxml");
+        new ModelOpen().loadPage(event, "journal_programmation.fxml", true, "Journal de programmation");
+    }
+    
+    @FXML
+    void proceduresButtonOnAction(ActionEvent event) throws IOException {
+        new ModelOpen().loadPage(event, "Procedure.fxml", true, "Procédures");
+    }
+    
+    @FXML
+    void administrationButtonOnAction(ActionEvent event) throws IOException {
+        new ModelOpen().loadPage(event, "Administration.fxml", true, "Administration");
+    }
+    
+    @FXML
+    void typePrestationButtonOnAction(ActionEvent event) throws IOException {
+        new ModelOpen().loadPage(event, "TypePrestation.fxml", true, "Types Prestation");
     }
     
     @FXML

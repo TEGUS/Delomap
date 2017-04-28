@@ -5,6 +5,11 @@
  */
 package pattern.dao;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import javabeans.Document;
 import java.util.List;
 
@@ -37,6 +42,22 @@ public class DocumentDAO extends DAO<Document> {
     @Override
     public Document findById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public List<Document> findByMarche(int idMarche) throws SQLException {
+        PreparedStatement st = this.connect.prepareStatement("SELECT * FROM document");
+        ResultSet ret = st.executeQuery();
+        
+        List<Document> documents = new ArrayList();
+        while (ret.next()) {
+            Document d = new Document();
+            d.setId(ret.getInt("id"));
+            d.setDelaiTransmission(ret.getTimestamp("DelaisTransmission"));
+            d.setStatut(ret.getString("statut"));
+            documents.add(d);
+        }
+        st.close();
+        return documents;
     }
     
 }

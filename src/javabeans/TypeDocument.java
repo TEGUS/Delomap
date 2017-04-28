@@ -20,6 +20,13 @@ public class TypeDocument {
     public TypeDocument() {
     }
 
+    public TypeDocument(String code, String nom, String phase) {
+        this.code = code;
+        this.nom = nom;
+        this.phase = phase;
+    }
+    
+
     public String getCode() {
         return code;
     }

@@ -22,7 +22,7 @@
          <effect>
             <ImageInput>
                <source>
-                  <Image url="file:/D:/Hands-on%20training/Delomap/Delomap/src/gui/menu1.jpg" />
+                  <Image url="/gui/menu1.jpg" />
                </source>
             </ImageInput>
          </effect>
@@ -31,7 +31,7 @@
          <effect>
             <ImageInput>
                <source>
-                  <Image url="file:/D:/Hands-on%20training/Delomap/Delomap/src/gui/DELOMAP1.jpg" />
+                  <Image url="/gui/DELOMAP1.jpg" />
                </source>
             </ImageInput>
          </effect>

@@ -30,6 +30,6 @@ public class AccueilController {
     
     @FXML
     void menuButtonOnAction(ActionEvent event) throws IOException {
-        new ModelOpen().loadPage(event, "Menu.fxml");
+        new ModelOpen().loadPage(event, "Menu.fxml", false, "Menu principal");
     }
 }
