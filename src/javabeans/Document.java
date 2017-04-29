@@ -6,7 +6,6 @@
 package javabeans;
 
 import java.sql.Blob;
-import java.util.Date;
 
 /**
  *
@@ -14,11 +13,13 @@ import java.util.Date;
  */
 public class Document {
     private int id;
-    private Date delaiTransmission;
+    private String nom;
+    private String delaiTransmission;
     private String statut;
     private Blob archive;
     private DocumentParTypeProcedure documentParTypeProcedure;
     private Marche marche;
+    private String phase;
 
     public Document() {
     }
@@ -31,16 +32,32 @@ public class Document {
         this.id = id;
     }
 
-    public Date getDelaiTransmission() {
+    public String getDelaiTransmission() {
         return delaiTransmission;
     }
 
-    public void setDelaiTransmission(Date delaiTransmission) {
+    public void setDelaiTransmission(String delaiTransmission) {
         this.delaiTransmission = delaiTransmission;
+    }
+
+    public String getPhase() {
+        return phase;
+    }
+
+    public void setPhase(String phase) {
+        this.phase = phase;
     }
 
     public String getStatut() {
         return statut;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public void setStatut(String statut) {
@@ -69,6 +86,11 @@ public class Document {
 
     public void setMarche(Marche marche) {
         this.marche = marche;
+    }
+
+    @Override
+    public String toString() {
+        return "Document{" + "id=" + id + ", nom=" + nom + ", delaiTransmission=" + delaiTransmission + ", statut=" + statut + ", archive=" + archive + ", documentParTypeProcedure=" + documentParTypeProcedure + ", marche=" + marche + ", phase=" + phase + '}';
     }
     
 }

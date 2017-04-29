@@ -36,10 +36,10 @@ public class ModifierMarche {
     private URL location;
 
     @FXML
-    private ComboBox<String> typePrestationMarche;
+    private TextField nomMarche;
 
     @FXML
-    private TextField nomMarche;
+    private TextField montantMarche;
 
     @FXML
     private DatePicker dateDebutMarche;
@@ -48,11 +48,23 @@ public class ModifierMarche {
     private DatePicker dateFinMarche;
 
     @FXML
-    private TextField montantMarche;
+    private ComboBox<String> typePrestationMarche;
+
+    @FXML
+    private DatePicker dateDemarrage;
+
+    @FXML
+    private DatePicker dateSignature;
+
+    @FXML
+    private DatePicker dateAttribution;
+
+    @FXML
+    private TextField autoriteContractante;
 
     @FXML
     private Button enregistrerMarche;
-    
+
     @FXML
     private Button validerMarcheBtn;
 
@@ -82,6 +94,10 @@ public class ModifierMarche {
             marche.setDateDebut(Date.from(dateDebutMarche.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
             marche.setDateFin(Date.from(dateFinMarche.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
             marche.setMontant(Integer.parseInt(montantMarche.getText()));
+            marche.setDateAttribution(Date.from(dateAttribution.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            marche.setDateSignature(Date.from(dateSignature.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            marche.setDateDemarrage(Date.from(dateDemarrage.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            marche.setAutoriteContractante(autoriteContractante.getText());
             //typePrestationMarche.getSelectionModel().select(0);
             if (typePrestationMarche.getSelectionModel().getSelectedItem() == null) {
                 typePrestationMarche.getSelectionModel().select(0);

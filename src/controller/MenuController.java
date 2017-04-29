@@ -18,15 +18,33 @@ public class MenuController {
 
     @FXML
     private Button journalProgButton;
-    
-     @FXML
+
+    @FXML
+    private Button typeProcedureButton;
+
+    @FXML
+    private Button typePrestationButton;
+
+    @FXML
+    private Button documentsButton;
+
+    @FXML
     private Button administrationButton;
 
     @FXML
     private Button proceduresButton;
-    
+
     @FXML
-    private Button typePrestationButton;
+    private Button nouveauMarcheButton;
+
+    @FXML
+    private Button ajoutAdminButton;
+
+    @FXML
+    private Button retourButton;
+
+    @FXML
+    private Button exitButton;
 
 
     @FXML
@@ -45,12 +63,37 @@ public class MenuController {
     
     @FXML
     void administrationButtonOnAction(ActionEvent event) throws IOException {
-        new ModelOpen().loadPage(event, "Administration.fxml", true, "Administration");
+        
     }
     
     @FXML
     void typePrestationButtonOnAction(ActionEvent event) throws IOException {
         new ModelOpen().loadPage(event, "TypePrestation.fxml", true, "Types Prestation");
+    }
+
+    @FXML
+    void ajoutAdminButtonAction(ActionEvent event) throws IOException {
+        new ModelOpen().loadPage(event, "Administration.fxml", true, "Administration");
+    }
+
+    @FXML
+    void documentsButtonOnAction(ActionEvent event) throws IOException {
+        new ModelOpen().loadPage(event, "ListeDocuments.fxml", true, "Documents");
+    }
+
+    @FXML
+    void nouveauMarcheButtonOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void retourButtonOnAction(ActionEvent event) throws IOException {
+        new ModelOpen().loadPage(event, "Accueil.fxml", true, "Accueil");
+    }
+
+    @FXML
+    void typeProcedureButtonOnAction(ActionEvent event) throws IOException {
+        new ModelOpen().loadPage(event, "TypeProcedure.fxml", true, "Type Procédure");
     }
     
     @FXML

@@ -15,9 +15,14 @@ import java.util.List;
 public class Marche {
     private int id;
     private String nom;
-    private Date dateDebut;
-    private Date dateFin;
     private int montant;
+    private Date dateDebut;
+    private Date dateAttribution;
+    private Date dateSignature;
+    private Date dateDemarrage;
+    private Date dateFin;
+    private String autoriteContractante;
+    
     private Administration administration;
     private List<Procedure> procedures;
     private List<Document> documents;
@@ -99,9 +104,43 @@ public class Marche {
         this.codeTypePrestation = codeTypePrestation;
     }
 
+    public Date getDateAttribution() {
+        return dateAttribution;
+    }
+
+    public void setDateAttribution(Date dateAttribution) {
+        this.dateAttribution = dateAttribution;
+    }
+
+    public Date getDateSignature() {
+        return dateSignature;
+    }
+
+    public void setDateSignature(Date dateSignature) {
+        this.dateSignature = dateSignature;
+    }
+
+    public Date getDateDemarrage() {
+        return dateDemarrage;
+    }
+
+    public void setDateDemarrage(Date dateDemarrage) {
+        this.dateDemarrage = dateDemarrage;
+    }
+
+    public String getAutoriteContractante() {
+        return autoriteContractante;
+    }
+
+    public void setAutoriteContractante(String autoriteContractante) {
+        this.autoriteContractante = autoriteContractante;
+    }
+
     @Override
     public String toString() {
-        return "Marche{" + "id=" + id + ", nom=" + nom + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", montant=" + montant + ", administration=" + administration + ", procedures=" + procedures + '}';
+        return this.nom;
     }
+
+    
 }
 
