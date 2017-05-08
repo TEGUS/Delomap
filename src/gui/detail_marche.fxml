@@ -133,7 +133,7 @@
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="117.0" prefWidth="390.0">
                                        <children>
-                                          <ListView fx:id="procedureListView" prefHeight="94.0" prefWidth="313.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <ListView fx:id="procedureListView" onMouseClicked="#procedureListViewOnMouseClicked" prefHeight="94.0" prefWidth="313.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                 </content>
@@ -178,13 +178,13 @@
                   <Button fx:id="suivantButton" layoutX="614.0" layoutY="344.0" mnemonicParsing="false" text="Suivant &gt;" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="50.0" />
                   <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
                      <content>
-                        <TableView prefHeight="339.0" prefWidth="635.0">
+                        <TableView fx:id="tableView" onMouseClicked="#tableViewOnMouseClicked" prefHeight="339.0" prefWidth="635.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="Numéro" />
-                            <TableColumn prefWidth="75.0" text="Phase" />
-                              <TableColumn prefWidth="75.0" text="Nom du document" />
-                              <TableColumn prefWidth="75.0" text="Document scanné" />
-                              <TableColumn prefWidth="75.0" text="Statut" />
+                            <TableColumn fx:id="idTableColumn" prefWidth="75.0" text="Numéro" />
+                            <TableColumn fx:id="phaseTableColumn" prefWidth="75.0" text="Phase" />
+                              <TableColumn fx:id="nomTableColumn" prefWidth="75.0" text="Nom du document" />
+                              <TableColumn fx:id="archiveTableColumn" prefWidth="75.0" text="Document scanné" />
+                              <TableColumn fx:id="statutTableColumn" prefWidth="75.0" text="Statut" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

@@ -18,6 +18,11 @@ public class TypeProcedure {
     public TypeProcedure() {
     }
 
+    public TypeProcedure(String code, String nom) {
+        this.code = code;
+        this.nom = nom;
+    }
+
     public String getCode() {
         return code;
     }

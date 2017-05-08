@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.TextField?>
+<?import javafx.scene.control.TextField?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="494.0" prefWidth="787.0" style="-fx-background-color: #99D9EA;" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="Controleur.ProcedureController">
+<AnchorPane id="AnchorPane" prefHeight="494.0" prefWidth="787.0" style="-fx-background-color: #99D9EA;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProcedureController">
     <stylesheets>
         <URL value="@procedure.css" />
     </stylesheets>
@@ -29,17 +29,17 @@
             <Font size="27.0" />
          </font>
       </Label>
-      <TextField fx:id="codePrcTextField" layoutX="208.0" layoutY="113.0" prefHeight="25.0" prefWidth="223.0" />
-      <TextField fx:id="nomPrcTextField" layoutX="208.0" layoutY="184.0" prefHeight="25.0" prefWidth="223.0" />
-      <TableView fx:id="prcTableView" layoutX="25.0" layoutY="257.0" prefHeight="200.0" prefWidth="590.0">
+      <TextField fx:id="codeTextField" layoutX="208.0" layoutY="113.0" prefHeight="25.0" prefWidth="223.0" />
+      <TextField fx:id="nomTextField" layoutX="208.0" layoutY="184.0" prefHeight="25.0" prefWidth="223.0" />
+      <TableView fx:id="procedureTableView" layoutX="25.0" layoutY="257.0" prefHeight="200.0" prefWidth="590.0">
         <columns>
-          <TableColumn fx:id="codePrcTableColumn" prefWidth="300.0" text="Cde de procedure" />
-          <TableColumn fx:id="nomPrcTableColumn" prefWidth="300.0" text="Nom de la procedure" />
+          <TableColumn fx:id="codeTableColumn" prefWidth="300.0" text="Cde de procedure" />
+          <TableColumn fx:id="nomTableColumn" prefWidth="300.0" text="Nom de la procedure" />
         </columns>
       </TableView>
-      <Button fx:id="btnPrcEnregistrer" layoutX="660.0" layoutY="257.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="84.0" text="Enregistrer" />
-      <Button fx:id="btnPrcModifier" layoutX="660.0" layoutY="312.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="84.0" text="Modifier" />
-      <Button fx:id="btnPrcQuitter" layoutX="660.0" layoutY="432.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="84.0" text="Quitter" />
-      <Button fx:id="btnPrcSupprimer" layoutX="660.0" layoutY="370.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="84.0" text="Supprimer" />
+      <Button fx:id="enregistrerButton" layoutX="660.0" layoutY="257.0" mnemonicParsing="false" onAction="#enregistrerButtonOnAction" prefHeight="39.0" prefWidth="84.0" text="Enregistrer" />
+      <Button fx:id="modifierButton" layoutX="660.0" layoutY="312.0" mnemonicParsing="false" onAction="#modifierButtonOnAction" prefHeight="39.0" prefWidth="84.0" text="Modifier" />
+      <Button fx:id="quitterButton" layoutX="660.0" layoutY="432.0" mnemonicParsing="false" onAction="#quitterButtonOnAction" prefHeight="39.0" prefWidth="84.0" text="Quitter" />
+      <Button fx:id="supprimerButton" layoutX="660.0" layoutY="370.0" mnemonicParsing="false" onAction="#supprimerButtonOnAction" prefHeight="39.0" prefWidth="84.0" text="Supprimer" />
    </children>
 </AnchorPane>

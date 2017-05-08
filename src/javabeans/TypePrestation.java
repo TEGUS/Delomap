@@ -18,11 +18,10 @@ public class TypePrestation {
     public TypePrestation() {
     }
 
-    public TypePrestation(String code) {
+    public TypePrestation(String code, String nom) {
         this.code = code;
+        this.nom = nom;
     }
-    
-    
 
     public String getCode() {
         return code;

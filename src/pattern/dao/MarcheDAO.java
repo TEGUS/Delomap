@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Calendar;
 import javabeans.Marche;
 import java.util.List;
 import javabeans.Administration;
@@ -27,11 +26,15 @@ public class MarcheDAO extends DAO<Marche> {
         //mettre à jour la table marche
         Integer idMarche = null;
         try {
-            PreparedStatement st = this.connect.prepareStatement("insert into marche(Nom, DateDebut, DateFin, Montant) VALUES (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement st = this.connect.prepareStatement("insert into marche(Nom, DateDebut, dateAttribution, dateSignature, dateDemarage, DateFin, contractant, Montant) VALUES (?, ?, ?, ?, ?, ?, ? ,?)", Statement.RETURN_GENERATED_KEYS);
             st.setString(1, marche.getNom());
             st.setTimestamp(2, new Timestamp(marche.getDateDebut().getTime()));
-            st.setTimestamp(3, new Timestamp(marche.getDateFin().getTime()));
-            st.setInt(4, marche.getMontant());
+            st.setTimestamp(3, new Timestamp(marche.getDateAttribution().getTime()));
+            st.setTimestamp(4, new Timestamp(marche.getDateSignature().getTime()));
+            st.setTimestamp(5, new Timestamp(marche.getDateDemarrage().getTime()));
+            st.setTimestamp(6, new Timestamp(marche.getDateFin().getTime()));
+            st.setString(7, marche.getAutoriteContractante());
+            st.setInt(8, marche.getMontant());
             st.executeUpdate();
             ResultSet rs = st.getGeneratedKeys();
             if (rs.next()) {
@@ -193,6 +196,10 @@ System.out.println("typePro" + tpro);
             m.setId(ret.getInt("id"));
             m.setNom(ret.getString("Nom"));
             m.setDateDebut(ret.getDate("DateDebut"));
+            m.setDateAttribution(ret.getDate("dateAttribution"));
+            m.setDateSignature(ret.getDate("dateSignature"));
+            m.setDateDemarrage(ret.getDate("dateDemarage"));
+            m.setAutoriteContractante(ret.getString("contractant"));
             m.setDateFin(ret.getDate("DateFin"));
             m.setAdministration(new Administration(ret.getString("CodeAdministration")));
             m.setMontant(ret.getInt("Montant"));
@@ -231,8 +238,18 @@ System.out.println("typePro" + tpro);
     }
 
     @Override
-    public Marche findById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Marche findById(int id) throws SQLException {
+        PreparedStatement st = this.connect.prepareStatement("SELECT * FROM marche where id=?");
+        st.setInt(1, id);
+        ResultSet ret = st.executeQuery();
+        Marche m = null;
+        while (ret.next()) {
+            m = new Marche();
+            m.setId(ret.getInt("id"));
+            m.setNom(ret.getString("Nom"));
+        }
+        st.close();
+        return m;
     }
 
 }

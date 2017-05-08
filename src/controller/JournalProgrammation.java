@@ -58,34 +58,46 @@ public class JournalProgrammation implements EventHandler {
     private URL location;
 
     @FXML
-    private Button rechercher;
+    private ComboBox<String> searchTypePrestation;
 
     @FXML
     private TextField searchInput;
 
     @FXML
-    private ComboBox<String> searchTypePrestation;
+    private Button rechercher;
 
     @FXML
     private TableView<Marche> marcheTable;
 
     @FXML
-    private TableColumn<Marche, Integer> idColumn;
+    private TableColumn<Marche, ?> idColumn;
 
     @FXML
-    private TableColumn<Marche, String> nomColumn;
+    private TableColumn<Marche, ?> nomColumn;
 
     @FXML
-    private TableColumn<Marche, Integer> montantColumn;
+    private TableColumn<Marche, ?> montantColumn;
 
     @FXML
-    private TableColumn<Marche, Date> dateDebutColumn;
+    private TableColumn<Marche, ?> dateDebutColumn;
 
     @FXML
-    private TableColumn<Marche, Date> dateFinColumn;
+    private TableColumn<Marche, ?> dateAttributionColumn;
 
     @FXML
-    private TableColumn<Marche, String> typePrestationColumn;
+    private TableColumn<Marche, ?> dateSignatureColumn;
+
+    @FXML
+    private TableColumn<Marche, ?> dateDemarrageColumn;
+
+    @FXML
+    private TableColumn<Marche, ?> dateFinColumn;
+
+    @FXML
+    private TableColumn<Marche, String> contractantColumn;
+
+    @FXML
+    private TableColumn<Marche, ?> typePrestationColumn;
 
     @FXML
     private Button modifierBtn;
@@ -172,10 +184,14 @@ public class JournalProgrammation implements EventHandler {
 
         params = new ArrayList<>();
         params.add("id");
-        params.add("Nom");
-        params.add("Montant");
-        params.add("DateDebut");
-        params.add("DateFin");
+        params.add("nom");
+        params.add("montant");
+        params.add("dateDebut");
+        params.add("dateAttribution");
+        params.add("dateSignature");
+        params.add("dateDemarrage");
+        params.add("dateFin");
+        params.add("autoriteContractante");
         params.add("codeTypePrestation");
 
         listColumns = new ArrayList<>();
@@ -183,7 +199,11 @@ public class JournalProgrammation implements EventHandler {
         listColumns.add(nomColumn);
         listColumns.add(montantColumn);
         listColumns.add(dateDebutColumn);
+        listColumns.add(dateAttributionColumn);
+        listColumns.add(dateSignatureColumn);
+        listColumns.add(dateDemarrageColumn);
         listColumns.add(dateFinColumn);
+        listColumns.add(contractantColumn);
         listColumns.add(typePrestationColumn);
 
         modelTable.loadTableJavabean(marcheTable, listColumns, params);
