@@ -15,7 +15,7 @@
 
 <AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="600.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.JournalProgrammation">
     <children>
-        <SplitPane dividerPositions="0.19463087248322147" layoutX="160.0" layoutY="32.0" orientation="VERTICAL" prefHeight="300.0" prefWidth="600.0" style="-fx-background-image: url('file:C:/Users/Arthur_2/Documents/NetBeansProjects/DelomapCloneFinal/src/images/geo-pattern.jpg');" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <SplitPane dividerPositions="0.19463087248322147" layoutX="160.0" layoutY="32.0" orientation="VERTICAL" prefHeight="300.0" prefWidth="600.0" style="-fx-background-image: url('file:C:/Users/Arthur_2/Documents/NetBeansProjects/DelomapCloneFinal/src/images/bg.jpeg');" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <items>
                 <AnchorPane maxHeight="60.0" minHeight="0.0" minWidth="0.0" prefHeight="60.0" prefWidth="160.0">
                     <children>
