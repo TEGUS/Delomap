@@ -44,6 +44,13 @@ public class DocumentDAO extends DAO<Document> {
         st.executeUpdate();
         st.close();
     }
+    
+    public void update(Integer id) throws SQLException {
+        PreparedStatement st = this.connect.prepareStatement("update document set Statut='envoye' where id=?");
+        st.setInt(1, id);
+        st.executeUpdate();
+        st.close();
+    }
 
     @Override
     public void delete(Document obj) throws SQLException {
@@ -86,8 +93,10 @@ public class DocumentDAO extends DAO<Document> {
         while (ret.next()) {
             Document d = new Document();
             d.setId(ret.getInt("id"));
+            d.setNom(ret.getString("nom"));
             d.setDelaiTransmission(ret.getString("DelaisTransmission"));
             d.setStatut(ret.getString("statut"));
+            d.setPhase(ret.getString("phase"));
             documents.add(d);
         }
         st.close();

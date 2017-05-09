@@ -39,7 +39,7 @@ public class ProcedureDAO extends DAO<Procedure> {
     }
     
     public List<Procedure> findByMarche(int idMarche) throws SQLException {
-        PreparedStatement st = this.connect.prepareStatement("SELECT * FROM procedures");
+        PreparedStatement st = this.connect.prepareStatement("SELECT * FROM procedures where marche_idMarche = "+idMarche);
         ResultSet ret = st.executeQuery();
         
         List<Procedure> procedures = new ArrayList();
@@ -47,6 +47,8 @@ public class ProcedureDAO extends DAO<Procedure> {
             Procedure p = new Procedure();
             p.setId(ret.getInt("id"));
             p.setStatut(ret.getString("statut"));
+            p.setCodeTypePrestation(ret.getString("procedurepartypeprestation_codeTypePrestation"));
+            p.setCodeTypeProcedure(ret.getString("procedurepartypeprestation_codeTypeProcedure"));
             procedures.add(p);
         }
         st.close();
