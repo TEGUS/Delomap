@@ -7,6 +7,7 @@ package pattern.factory;
 
 import javabeans.Administration;
 import javabeans.Document;
+import javabeans.FicheSuivi;
 import javabeans.Marche;
 import javabeans.Procedure;
 import javabeans.TypeDocument;
@@ -15,6 +16,7 @@ import javabeans.TypeProcedure;
 import pattern.dao.AdministrationDAO;
 import pattern.dao.DAO;
 import pattern.dao.DocumentDAO;
+import pattern.dao.FicheSuiviDAO;
 import pattern.dao.MarcheDAO;
 import pattern.dao.ProcedureDAO;
 import pattern.dao.TypeDocumentDAO;
@@ -53,5 +55,9 @@ public class DAOFactory {
     
     public static DAO<TypeDocument> getTypeDocumentDAO() {
         return new TypeDocumentDAO();
+    }
+    
+    public static DAO<FicheSuivi> getFicheSuiviDAO() {
+        return new FicheSuiviDAO();
     }
 }

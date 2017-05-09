@@ -110,10 +110,9 @@ public class TypeProcedureController {
     @FXML
     void modifierButtonOnAction(ActionEvent event) throws SQLException {
         if (isInputValid()) {
-            TypeProcedure typePrestation = new TypeProcedure(
-                    codeTextField.getText(),
-                    nomTextField.getText()
-            );
+            TypeProcedure typePrestation = tableView.getSelectionModel().getSelectedItem();
+            typePrestation.setCode(codeTextField.getText());
+            typePrestation.setNom(nomTextField.getText());
             dao.update(typePrestation);
             reset();
             ModelDialogNotification.show("Modification effectuée!");

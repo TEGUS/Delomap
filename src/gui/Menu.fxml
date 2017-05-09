@@ -20,5 +20,6 @@
       <Button fx:id="ajoutAdminButton" layoutX="555.0" layoutY="331.0" mnemonicParsing="false" onAction="#ajoutAdminButtonAction" prefHeight="67.0" prefWidth="194.0" text="AJOUTER ADMINISTRATION" />
       <Button fx:id="retourButton" layoutX="469.0" layoutY="435.0" mnemonicParsing="false" onAction="#retourButtonOnAction" prefHeight="25.0" prefWidth="118.0" text="Retour MENU" />
       <Button fx:id="exitButton" layoutX="623.0" layoutY="435.0" mnemonicParsing="false" onAction="#exitButtonOnAction" prefHeight="25.0" prefWidth="118.0" text="Quitter" />
+      <Button fx:id="ficheSuiviButton" layoutX="555.0" layoutY="254.0" mnemonicParsing="false" onAction="#ficheSuiviButtonOnAction" prefHeight="67.0" prefWidth="194.0" text="FICHE SUIVI" />
    </children>
 </AnchorPane>

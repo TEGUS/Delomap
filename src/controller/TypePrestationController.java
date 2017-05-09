@@ -110,10 +110,9 @@ public class TypePrestationController {
     @FXML
     void modifierButtonOnAction(ActionEvent event) throws SQLException {
         if (isInputValid()) {
-            TypePrestation typePrestation = new TypePrestation(
-                    codeTextField.getText(),
-                    nomTextField.getText()
-            );
+            TypePrestation typePrestation = tableView.getSelectionModel().getSelectedItem();
+            typePrestation.setCode(codeTextField.getText());
+            typePrestation.setNom(nomTextField.getText());
             typePrestationDAO.update(typePrestation);
             reset();
             ModelDialogNotification.show("Modification effectuée!");

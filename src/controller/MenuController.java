@@ -45,6 +45,9 @@ public class MenuController {
 
     @FXML
     private Button exitButton;
+    
+    @FXML
+    private Button ficheSuiviButton;
 
 
     @FXML
@@ -94,6 +97,11 @@ public class MenuController {
     @FXML
     void typeProcedureButtonOnAction(ActionEvent event) throws IOException {
         new ModelOpen().loadPage(event, "TypeProcedure.fxml", true, "Type Procédure");
+    }
+    
+    @FXML
+    void ficheSuiviButtonOnAction(ActionEvent event) throws IOException {
+        new ModelOpen().loadPage(event, "FicheSuivi.fxml", true, "Fiche Suivi");
     }
     
     @FXML
