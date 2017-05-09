@@ -4,6 +4,7 @@
 
 package controller;
 
+import gui.MainApp;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -14,13 +15,22 @@ import javabeans.Document;
 import javabeans.Marche;
 import javabeans.Procedure;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.ModelDataTable;
 import model.ModelOpen;
 import pattern.dao.DocumentDAO;
@@ -28,7 +38,7 @@ import pattern.dao.ProcedureDAO;
 import pattern.factory.DAOFactory;
 import tools.Context;
 
-public class DetailMarche {
+public class DetailMarche implements EventHandler {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -61,31 +71,33 @@ public class DetailMarche {
     private Button suivantButton;
 
     @FXML
-    private TableView<Object> tableView;
+    private TableView<Document> tableView;
 
     @FXML
-    private TableColumn<Object, ?> idTableColumn;
+    private TableColumn<Document, ?> idTableColumn;
 
     @FXML
-    private TableColumn<Object, ?> phaseTableColumn;
+    private TableColumn<Document, ?> phaseTableColumn;
 
     @FXML
-    private TableColumn<Object, ?> nomTableColumn;
+    private TableColumn<Document, ?> nomTableColumn;
 
     @FXML
-    private TableColumn<Object, ?> archiveTableColumn;
+    private TableColumn<Document, ?> archiveTableColumn;
 
     @FXML
-    private TableColumn<Object, ?> statutTableColumn;
+    private TableColumn<Document, ?> statutTableColumn;
 
-    private ModelDataTable<Object> modelTable;
+    private ModelDataTable<Document> modelTable;
     private List<String> params;
-    private List<TableColumn<Object, ?>> listColumns;
+    private List<TableColumn<Document, ?>> listColumns;
     
     private Marche marche;
     private ProcedureDAO procedureDAO;
     private DocumentDAO documentDAO;
 
+    private Stage dialogStage;
+    
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() throws SQLException {
         procedureDAO = (ProcedureDAO)DAOFactory.getProcedureDAO();
@@ -99,12 +111,13 @@ public class DetailMarche {
         
         procedureListView.getItems().addAll(procedureDAO.findByMarche(marche.getId()));
         
-        
         modelTable = new ModelDataTable<>();
 
         params = new ArrayList<>();
         params.add("id");
-        params.add("delaiTransmission");
+        params.add("phase");
+        params.add("nom");
+        params.add("archive");
         params.add("statut");
 
         listColumns = new ArrayList<>();
@@ -124,12 +137,38 @@ public class DetailMarche {
     }
 
     @FXML
-    void tableViewOnMouseClicked(MouseEvent event) {
+    void tableViewOnMouseClicked(MouseEvent event) throws IOException {
+        
+        if (event.getClickCount() == 2) {
+            Document document = tableView.getSelectionModel().getSelectedItem();
+            System.out.println(document);
+            boolean okClicked = MainApp.showEnvoiDialog(document, "Envoi du document " + document.getNom());
+            if (okClicked) {
+                new ModelOpen().loadPage(event, "detail_marche.fxml", false, "Détail marché");
 
+                dialogStage = new Stage();
+                dialogStage.initModality(Modality.WINDOW_MODAL);
+
+                Button ok = new Button("Ok");
+                VBox vbox = new VBox(new Text("Le document " + document.getNom() + " a bien été envoyé"), ok);
+                vbox.setAlignment(Pos.CENTER);
+                vbox.setPadding(new Insets(15));
+
+                dialogStage.setScene(new Scene(vbox));
+                dialogStage.show();
+
+                ok.setOnAction(this);
+            }
+        }
     }
     
     @FXML
     void precedentOnAction(ActionEvent event) throws IOException {
         new ModelOpen().loadPage(event, "journal_programmation.fxml", true, "Journal de programmation");
+    }
+
+    @Override
+    public void handle(Event event) {
+        dialogStage.close();
     }
 }

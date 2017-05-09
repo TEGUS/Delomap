@@ -5,9 +5,11 @@
  */
 package gui;
 
+import controller.EnvoiDoc;
 import controller.ModifierMarche;
 import controller.RootLayout;
 import java.io.IOException;
+import javabeans.Document;
 import javabeans.Marche;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -25,8 +27,8 @@ public class MainApp extends Application {
 
     private static Stage primaryStage;
     public static BorderPane rootLayout;
-    
-    
+
+
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -104,7 +106,39 @@ public class MainApp extends Application {
             return false;
         }
     }
+    
+    public static boolean showEnvoiDialog(Document document, String titre) {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("envoi_doc.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
 
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle(titre);
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set marché into the controller.
+            EnvoiDoc controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            //controller.setParentStage(this.primaryStage);
+            controller.setDocument(document);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+            return controller.isOkClicked();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
     public Stage getPrimaryStage() {
         return primaryStage;
     }

@@ -13,8 +13,25 @@ package javabeans;
 public class Procedure {
     private int id;
     private String statut;
-    private ProcedureParTypePrestation procedureParTypePrestation;
+    private String codeTypePrestation;
+    private String codeTypeProcedure;
     private Marche marche;
+
+    public String getCodeTypePrestation() {
+        return codeTypePrestation;
+    }
+
+    public void setCodeTypePrestation(String codeTypePrestation) {
+        this.codeTypePrestation = codeTypePrestation;
+    }
+
+    public String getCodeTypeProcedure() {
+        return codeTypeProcedure;
+    }
+
+    public void setCodeTypeProcedure(String codeTypeProcedure) {
+        this.codeTypeProcedure = codeTypeProcedure;
+    }
 
     public Procedure() {
     }
@@ -35,20 +52,17 @@ public class Procedure {
         this.statut = statut;
     }
 
-    public ProcedureParTypePrestation getProcedureParTypePrestation() {
-        return procedureParTypePrestation;
-    }
-
-    public void setProcedureParTypePrestation(ProcedureParTypePrestation procedureParTypePrestation) {
-        this.procedureParTypePrestation = procedureParTypePrestation;
-    }
-
     public Marche getMarche() {
         return marche;
     }
 
     public void setMarche(Marche marche) {
         this.marche = marche;
+    }
+
+    @Override
+    public String toString() {
+        return codeTypeProcedure;
     }
     
 }
