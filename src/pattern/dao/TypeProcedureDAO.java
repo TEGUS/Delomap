@@ -38,7 +38,13 @@ public class TypeProcedureDAO extends DAO<TypeProcedure>{
 
     @Override
     public void delete(TypeProcedure obj) throws SQLException {
-        PreparedStatement del_proc = this.connect.prepareStatement("delete from typeprocedure where code = ?");
+        
+        PreparedStatement del_proc = this.connect.prepareStatement("delete from documentpartypeprocedure where codeTypeProcedure = ?");
+        del_proc.setString(1, obj.getCode());
+        del_proc.executeUpdate();
+        del_proc.close();
+        
+        del_proc = this.connect.prepareStatement("delete from typeprocedure where code = ?");
         del_proc.setString(1, obj.getCode());
         del_proc.executeUpdate();
         del_proc.close();

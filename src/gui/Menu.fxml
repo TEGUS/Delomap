@@ -13,13 +13,12 @@
       <Button fx:id="typeProcedureButton" layoutX="31.0" layoutY="146.0" mnemonicParsing="false" onAction="#typeProcedureButtonOnAction" prefHeight="92.0" prefWidth="202.0" text="TYPE PROCEDURE" />
       <Button fx:id="typePrestationButton" layoutX="293.0" layoutY="26.0" mnemonicParsing="false" onAction="#typePrestationButtonOnAction" prefHeight="92.0" prefWidth="202.0" text="TYPE DE PRESTATION" />
       <Button fx:id="documentsButton" layoutX="293.0" layoutY="146.0" mnemonicParsing="false" onAction="#documentsButtonOnAction" prefHeight="92.0" prefWidth="202.0" text="LISTE DES DOCUMENTS" />
-      <Button fx:id="administrationButton" layoutX="551.0" layoutY="146.0" mnemonicParsing="false" onAction="#administrationButtonOnAction" prefHeight="92.0" prefWidth="202.0" text="ADMINISTRATIONS" />
       <Button fx:id="proceduresButton" layoutX="551.0" layoutY="26.0" mnemonicParsing="false" onAction="#proceduresButtonOnAction" prefHeight="92.0" prefWidth="202.0" text="PROCEDURES" />
-      <Button fx:id="nouveauMarcheButton" layoutX="35.0" layoutY="331.0" mnemonicParsing="false" onAction="#nouveauMarcheButtonOnAction" prefHeight="67.0" prefWidth="194.0" text="NOUVEAU MARCHE" />
+      <Button fx:id="nouveauMarcheButton" layoutX="35.0" layoutY="331.0" mnemonicParsing="false" onAction="#nouveauMarcheButtonOnAction" prefHeight="67.0" prefWidth="194.0" text="AJOUT NOUVEAU MARCHE" />
       <Button layoutX="297.0" layoutY="331.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="194.0" text="NOUVELLE PROCEDURE" />
       <Button fx:id="ajoutAdminButton" layoutX="555.0" layoutY="331.0" mnemonicParsing="false" onAction="#ajoutAdminButtonAction" prefHeight="67.0" prefWidth="194.0" text="AJOUTER ADMINISTRATION" />
       <Button fx:id="retourButton" layoutX="469.0" layoutY="435.0" mnemonicParsing="false" onAction="#retourButtonOnAction" prefHeight="25.0" prefWidth="118.0" text="Retour MENU" />
       <Button fx:id="exitButton" layoutX="623.0" layoutY="435.0" mnemonicParsing="false" onAction="#exitButtonOnAction" prefHeight="25.0" prefWidth="118.0" text="Quitter" />
-      <Button fx:id="ficheSuiviButton" layoutX="555.0" layoutY="254.0" mnemonicParsing="false" onAction="#ficheSuiviButtonOnAction" prefHeight="67.0" prefWidth="194.0" text="FICHE SUIVI" />
+      <Button fx:id="ficheSuiviButton" layoutX="555.0" layoutY="146.0" mnemonicParsing="false" onAction="#ficheSuiviButtonOnAction" prefHeight="92.0" prefWidth="194.0" text="FICHE SUIVI" />
    </children>
 </AnchorPane>

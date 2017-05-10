@@ -72,10 +72,12 @@ System.out.println("typePro" + tpro);
                 String tpro = ret.getString("typeprocedure");
                 String tdo = ret.getString("typedocument");
 
-                PreparedStatement stp = this.connect.prepareStatement("insert into document(documentpartypeprocedure_codeTypeProcedure, documentpartypeprocedure_codeTypeDocument, idMarche) VALUES (?, ?, ?)");
+                PreparedStatement stp = this.connect.prepareStatement("insert into document(documentpartypeprocedure_codeTypeProcedure, documentpartypeprocedure_codeTypeDocument, idMarche, nom, phase) VALUES (?, ?, ?, ?, ?)");
                 stp.setString(1, tpro);
                 stp.setString(2, tdo);
                 stp.setInt(3, idMarche);
+                stp.setString(4, ret.getString("nomdocument"));
+                stp.setString(5, ret.getString("phasedocument"));
                 stp.executeUpdate();
                 stp.close();
             }
